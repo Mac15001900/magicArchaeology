@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bvimepthmrq3u"]
+
+[ext_resource type="Script" uid="uid://dcgudm6ucxopj" path="res://scripts/crystal.gd" id="1_t4dcj"]
+[ext_resource type="Texture2D" uid="uid://i348l8yi8ks2" path="res://assets/tilesets/tilemap_packed.png" id="2_g5hse"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uol2a"]
+radius = 7.0
+
+[node name="Crystal" type="Area2D" unique_id=550974585]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_t4dcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=572550947]
+shape = SubResource("CircleShape2D_uol2a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1333395593]
+texture = ExtResource("2_g5hse")
+region_enabled = true
+region_rect = Rect2(126, 54, 18, 18)

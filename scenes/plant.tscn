@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cpiexp4o0wfln"]
+
+[ext_resource type="Texture2D" uid="uid://ckyd5hun6lnmn" path="res://assets/tilesets/tilemap_packed2.png" id="1_fi0kw"]
+[ext_resource type="Script" uid="uid://dsh763xy1yrsl" path="res://scripts/plant.gd" id="1_odjdt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uol2a"]
+radius = 31.016125
+
+[node name="Plant" type="Area2D" unique_id=1632999575]
+collision_mask = 2
+script = ExtResource("1_odjdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1213311847]
+texture = ExtResource("1_fi0kw")
+region_enabled = true
+region_rect = Rect2(162, 54, 18, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1075027663]
+shape = SubResource("CircleShape2D_uol2a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
