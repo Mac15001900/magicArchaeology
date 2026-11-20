@@ -6,7 +6,7 @@ enum Projectile_Type {
 }
 
 enum Hint_Type {
-	verbose, alphabetical
+	verbose, alphabetical, wordle
 }
 
 enum Spell_Type {

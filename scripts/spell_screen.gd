@@ -35,7 +35,10 @@ func response_for(spell: String) -> String:
 	#Are there any illegal characters?
 	var invalid_index = char_list.find_custom(func(s): return letter_index(s) == -1)
 	if invalid_index!=-1:
-		return "x "+spell[invalid_index]+" x" #TODO: Do something better for spaces
+		if spell[invalid_index] == ' ':
+			return "a b -> ab"
+		else:
+			return "x "+spell[invalid_index]+" x"
 		
 	#Does the length match?
 	if spell.length() > target.length():
@@ -61,7 +64,24 @@ func response_for(spell: String) -> String:
 				return ">"
 			else:
 				return "<"
-		#if list(spell).some
+		Enums.Hint_Type.wordle:
+			var target_amounts : Array[int] = []
+			target_amounts.resize(alphabet.length())
+			target_amounts.fill(0)
+			for i in range(target.length()):
+				target_amounts[letter_index(target[i])] += 1
+			
+			var res : String = ""
+			for i in range(spell.length()):
+				if target[i] == spell[i]:
+					res += '✓'
+				elif target_amounts[letter_index(spell[i])] > 0:
+					target_amounts[letter_index(spell[i])] -= 1
+					res += '?'
+				else:
+					res += 'x'
+			return res
+			
 	return "???????????????????????????????"
 		
 func letter_index(letter: String) -> int:
