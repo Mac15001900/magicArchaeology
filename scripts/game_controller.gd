@@ -66,6 +66,9 @@ func _cast_spell(spell : String) -> void:
 			if _string_to_color(parts[i]) != null:
 				first_color = Utils.add_colors(first_color, _string_to_color(parts[i]))
 				i+=1 
+				if parts.size() > i and _string_to_color(parts[i]) != null:
+					first_color = Utils.add_colors(first_color, _string_to_color(parts[i]))
+					i+=1
 			if parts.size() <= i or parts[i] != "to":
 				return
 			i+=1
@@ -77,6 +80,9 @@ func _cast_spell(spell : String) -> void:
 			if parts.size() > i and _string_to_color(parts[i]) != null:
 				second_color = Utils.add_colors(second_color, _string_to_color(parts[i]))
 				i+=1 
+				if parts.size() > i and _string_to_color(parts[i]) != null:
+					second_color = Utils.add_colors(second_color, _string_to_color(parts[i]))
+					i+=1
 			#Parsing direction
 			if parts.size() <= i:
 				return

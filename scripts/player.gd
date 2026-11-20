@@ -83,7 +83,7 @@ var is_wall_sliding = false
 var double_jump_timer = 0.0   # >0 while the double-jump flip animation should show
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var tilemap = $"../Level/TileMapLayer"
+@onready var tilemap = $"../Level/MainMap"
 
 func toggle_control(on: bool) -> void:
 	self.control_enabled = on
