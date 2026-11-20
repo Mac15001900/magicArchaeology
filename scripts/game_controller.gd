@@ -37,8 +37,9 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	#print(new_text)
 	text_input.clear()
 	_toggle_input_mode(false)
-	spell_cast.emit(new_text)
-	_cast_spell(new_text)
+	if(new_text.length()>0):
+		spell_cast.emit(new_text)
+		_cast_spell(new_text)
 
 func _on_line_edit_editing_toggled(toggled_on: bool) -> void:
 	if (!toggled_on && self.input_active):
