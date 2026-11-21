@@ -41,6 +41,7 @@ extends CharacterBody2D
 
 # --- Wall slide & wall jump ---
 @export_group("Wall")
+@export var enable_wall_jumps : bool = false
 @export var wall_slide_speed: float = 55.0    # capped fall speed while hugging a wall
 @export var wall_jump_velocity: float = -300.0  # upward kick of a wall jump
 @export var wall_jump_push: float = 220.0   # sideways shove away from the wall
@@ -169,7 +170,7 @@ func _handle_jump(delta):
 		jump_buffer_timer = max(jump_buffer_timer - delta, 0.0)
 
 	# A buffered press while hugging a wall in mid-air = a wall jump (highest priority).
-	if jump_buffer_timer > 0.0 and is_on_wall_only() and not is_on_floor():
+	if jump_buffer_timer > 0.0 and is_on_wall_only() and not is_on_floor() and enable_wall_jumps:
 		_do_wall_jump()
 		jump_buffer_timer = 0.0
 	# A buffered press + coyote grace = a normal ground jump.
