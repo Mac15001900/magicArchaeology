@@ -17,7 +17,7 @@ func _ready() -> void:
 func _on_game_controller_spell_cast(spell: String) -> void:
 	var response = response_for(spell)
 	self.clear()
-	if response.length() > 4:
+	if Array(response.split('\n')).any(func(line): return line.length() > 5):
 		self.push_font_size(8)
 	else:
 		self.push_font_size(16)
@@ -70,16 +70,22 @@ func response_for(spell: String) -> String:
 			target_amounts.fill(0)
 			for i in range(target.length()):
 				target_amounts[letter_index(target[i])] += 1
+			for i in range(spell.length()):
+				if target[i] == spell[i]:
+					target_amounts[letter_index(target[i])] -= 1
 			
 			var res : String = ""
 			for i in range(spell.length()):
 				if target[i] == spell[i]:
-					res += '✓'
+					res += '-'
 				elif target_amounts[letter_index(spell[i])] > 0:
 					target_amounts[letter_index(spell[i])] -= 1
 					res += '?'
 				else:
 					res += 'x'
+			if res.length()>12:
+				 #TODO make this general, not specifically made for this one message
+				res = res.insert(12,'\n').insert(8,'\n').insert(4,'\n')
 			return res
 			
 	return "???????????????????????????????"

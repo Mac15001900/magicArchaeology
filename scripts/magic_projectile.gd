@@ -7,8 +7,9 @@ var type = Enums.Projectile_Type.none
 var from_color = null
 var to_color = null
 var origin : Node2D 
+var start_position : Vector2
 
-const DELETION_DISTANCE = 1000**2
+const DELETION_DISTANCE = 500**2
 
 @export var speed: float = 32.0
 
@@ -22,11 +23,12 @@ func _process(delta: float) -> void:
 	if projectile_ready:
 		self.position.x += dx * speed * delta
 		self.position.y += dy * speed * delta
-		if self.position.distance_squared_to(origin.position) > DELETION_DISTANCE:
+		if self.position.distance_squared_to(start_position) > DELETION_DISTANCE:
 			queue_free()
 
 func setup(_origin : Node2D, direction: int, _type: Enums.Projectile_Type, _from_color=null, _to_color=null) -> void:
 	self.origin = _origin
+	self.start_position = Vector2(_origin.position)
 	self.dx = posmod((direction -1), 3) - 1
 	self.dy = -( (direction - 1) / 3 - 1)
 	self.type = _type

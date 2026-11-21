@@ -4,10 +4,25 @@ extends Node
 @onready var player = $"../Player"
 var input_active : bool = false
 var last_spell : String = ""
+var spell_history : Array[String] = []
+var history_index : int = 0
 var last_caret_column = 0
 var current_caret_column = 0
 
 signal spell_cast(spell : String)
+
+const Spell = {
+	divider = 'u',
+	cycle = 'nar',
+	to = 'tan',
+	up = 'wa',
+	down = 'nap',
+	left = 'pok',
+	right = 'kop',
+	red = 'loj',
+	green = 'lir',
+	blue = 'las',
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,10 +33,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("spell") && !input_active):
 		_toggle_input_mode(true)
-	if Input.is_action_just_pressed("last_spell") && input_active && last_spell.length()>0:
-		text_input.text = last_spell
-		text_input.caret_column = self.last_caret_column
 	if input_active:
+		if Input.is_action_just_pressed("last_spell") && spell_history.size()>0 && history_index > 0:
+			history_index -= 1
+			text_input.text = spell_history[history_index]
+			if history_index == spell_history.size() - 1:
+				text_input.caret_column = self.last_caret_column
+		elif Input.is_action_just_pressed("next_spell")  && spell_history.size()>0 && history_index < spell_history.size() -1:
+			history_index += 1
+			text_input.text = spell_history[history_index] #TODO code duplication with other case
+			if history_index == spell_history.size() - 1:
+				text_input.caret_column = self.last_caret_column
+			
 		current_caret_column = text_input.caret_column
 	
 
@@ -29,7 +52,8 @@ func _toggle_input_mode(on: bool) -> void:
 		self.input_active = on
 		player.toggle_control(!on)
 		if on:
-			text_input.appear() 
+			text_input.appear()
+			history_index = spell_history.size()
 		else:
 			text_input.hide()
 	
@@ -48,16 +72,18 @@ func _on_line_edit_editing_toggled(toggled_on: bool) -> void:
 func _cast_spell(spell : String) -> void:
 	if spell.length() == 0:
 		return
-	self.last_spell = spell
+	if(spell != self.last_spell):
+		self.last_spell = spell
+		self.spell_history.append(spell)
 	self.last_caret_column = self.current_caret_column 
 	
 	var parts = spell.split('u')
 	match parts[0]:
-		"cycle":
+		Spell.cycle:
 			var direction = _parse_direction(parts[1], parts[2] if parts.size()>=3 else "" )
 			if direction != 5:
 				player.send_projectile(direction, Enums.Projectile_Type.cycle, [])
-		"red", "green", "ble":
+		Spell.red, Spell.green, Spell.blue:
 			#Parsing first color
 			if parts.size()<3:
 				return
@@ -69,7 +95,7 @@ func _cast_spell(spell : String) -> void:
 				if parts.size() > i and _string_to_color(parts[i]) != null:
 					first_color = Utils.add_colors(first_color, _string_to_color(parts[i]))
 					i+=1
-			if parts.size() <= i or parts[i] != "to":
+			if parts.size() <= i or parts[i] != Spell.to:
 				return
 			i+=1
 			#Parsing second color
@@ -103,15 +129,15 @@ func _parse_direction(primary: String, secondary: String) -> int:
 
 func _string_to_color(string: String):
 	match string:
-		"red": return [1,0,0]
-		"green": return [0,1,0]
-		"ble": return [0,0,1]
+		Spell.red: return [1,0,0]
+		Spell.green: return [0,1,0]
+		Spell.blue: return [0,0,1]
 		_: return null
 
 func _string_to_direction(string: String) -> int:
 	match string:
-		"ip": return 8
-		"down": return 2
-		"left": return 4
-		"right": return 6
+		Spell.up: return 8
+		Spell.down: return 2
+		Spell.left: return 4
+		Spell.right: return 6
 		_: return 5

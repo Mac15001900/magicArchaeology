@@ -11,11 +11,9 @@ collision_mask = 2
 script = ExtResource("1_i64fm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1592140333]
-position = Vector2(15, -16)
 shape = SubResource("CircleShape2D_i64fm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=977612376]
-position = Vector2(15, -16)
 texture = ExtResource("1_rwqht")
 region_enabled = true
 region_rect = Rect2(198, 126, 18, 18)

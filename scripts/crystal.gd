@@ -30,6 +30,15 @@ func cycle():
 func change(from, to):
 	assert(from != null and to != null)
 	assert(from.size() == 3 and to.size() == 3)
+	if from[0]==r-1 and from [1]==g-1 and from[2]==b-1:
+		r = clamp(to[0] + 1, 1, 2)
+		g = clamp(to[1] + 1, 1, 2)
+		b = clamp(to[2] + 1, 1, 2)
+		_update_color()	
+	
+func old_change(from, to):
+	assert(from != null and to != null)
+	assert(from.size() == 3 and to.size() == 3)
 	if (from[0]==0 or r>=2) and (from[1]==0 or g>=2) and (from[2]==0 or b>=2):
 		r -= from[0]
 		g -= from[1]
