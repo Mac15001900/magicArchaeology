@@ -30,7 +30,7 @@ func response_for(spell: String) -> String:
 	var char_list = Array(spell.split())
 	#Is the spell valid?
 	if spell == target:
-		return "✓"
+		return "="
 		
 	#Are there any illegal characters?
 	var invalid_index = char_list.find_custom(func(s): return letter_index(s) == -1)

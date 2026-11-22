@@ -118,7 +118,7 @@ func _cast_spell(spell : String) -> void:
 				direction = Utils.combine_directions(direction, _string_to_direction(parts[i]))
 			if direction != 5:
 				player.send_projectile(direction, Enums.Projectile_Type.swap, [first_color, second_color])
-			print("making a magic projectile converting "+str(first_color)+" to "+str(second_color)+", heading in direction "+str(direction))
+				print("making a magic projectile converting "+str(first_color)+" to "+str(second_color)+", heading in direction "+str(direction))
 			
 	
 func _parse_direction(primary: String, secondary: String) -> int:

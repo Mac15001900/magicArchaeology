@@ -14,7 +14,7 @@ speed = 128.0
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1730646130]
 texture = ExtResource("1_xexvj")
 region_enabled = true
-region_rect = Rect2(234, 0, 18, 18)
+region_rect = Rect2(252, 0, 18, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1590171668]
 shape = SubResource("CircleShape2D_uol2a")

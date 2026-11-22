@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dcgudm6ucxopj" path="res://scripts/crystal.gd" id="1_t4dcj"]
 [ext_resource type="Texture2D" uid="uid://i348l8yi8ks2" path="res://assets/tilesets/tilemap_packed.png" id="2_g5hse"]
+[ext_resource type="AudioStream" uid="uid://brfovkigkccob" path="res://assets/sounds/crystal1.ogg" id="3_yorcj"]
+[ext_resource type="AudioStream" uid="uid://da7yvtk4bvuj2" path="res://assets/sounds/crystal2.ogg" id="4_c5q1o"]
+[ext_resource type="AudioStream" uid="uid://cehkld5u1h6mu" path="res://assets/sounds/crystal3.ogg" id="5_jxjg7"]
+[ext_resource type="AudioStream" uid="uid://dbq5wma1b1ybw" path="res://assets/sounds/crystal4.ogg" id="6_psy0v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uol2a"]
 radius = 7.0
@@ -18,3 +22,19 @@ shape = SubResource("CircleShape2D_uol2a")
 texture = ExtResource("2_g5hse")
 region_enabled = true
 region_rect = Rect2(126, 54, 18, 18)
+
+[node name="ChangeSound1" type="AudioStreamPlayer2D" parent="." unique_id=497017618]
+stream = ExtResource("3_yorcj")
+volume_db = -10.0
+
+[node name="ChangeSound2" type="AudioStreamPlayer2D" parent="." unique_id=658989045]
+stream = ExtResource("4_c5q1o")
+volume_db = -10.0
+
+[node name="ChangeSound3" type="AudioStreamPlayer2D" parent="." unique_id=1646857494]
+stream = ExtResource("5_jxjg7")
+volume_db = -10.0
+
+[node name="ChangeSound4" type="AudioStreamPlayer2D" parent="." unique_id=172770815]
+stream = ExtResource("6_psy0v")
+volume_db = -10.0

@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 	if projectile_ready:
 		self.position.x += dx * speed * delta
 		self.position.y += dy * speed * delta
+		self.rotate(delta*20)
 		if self.position.distance_squared_to(start_position) > DELETION_DISTANCE:
 			queue_free()
 

@@ -83,6 +83,10 @@ var wall_jump_lock_timer = 0.0
 var is_wall_sliding = false
 var double_jump_timer = 0.0   # >0 while the double-jump flip animation should show
 
+# -- Sounds
+
+@onready var sound_spellcast = $spellcast
+
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var tilemap = $"../Level/MainMap"
 
@@ -112,17 +116,19 @@ func _physics_process(delta):
 
 var test_counter = 1
 func _handle_projectiles():
-	if Input.is_action_just_pressed("test"):
-		var c = test_beam.instantiate()
-		c.position = self.position
-		#c.setup(test_counter, Enums.Projectile_Type.cycle)
-		c.setup(self, 8, Enums.Projectile_Type.cycle)
-		print(test_counter)
-		test_counter = test_counter % 9 +1
-		owner.add_child(c)
+	#if Input.is_action_just_pressed("test"):
+		#var c = test_beam.instantiate()
+		#c.position = self.position
+		##c.setup(test_counter, Enums.Projectile_Type.cycle)
+		#c.setup(self, 8, Enums.Projectile_Type.cycle)
+		#print(test_counter)
+		#test_counter = test_counter % 9 +1
+		#owner.add_child(c)
+	pass
 
 func send_projectile(direction: int, type: Enums.Projectile_Type, extra_args) -> void:
 	print("Sending projectile in direction "+str(direction))
+	sound_spellcast.play()
 	match type:
 		Enums.Projectile_Type.cycle:
 			var c = test_beam.instantiate()

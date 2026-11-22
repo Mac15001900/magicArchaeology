@@ -10,6 +10,7 @@ extends StaticBody2D
 
 @onready var sprite = $Sprite2D
 @onready var collider = $CollisionShape2D
+@onready var sound_open = $OpenSound
 
 var open : bool = false
 var in_animation : bool = false
@@ -37,8 +38,8 @@ func _process(delta: float) -> void:
 			position.y = start_y + offset	
 	
 	if !open and _all_crystals_match():
-		print("open!") #TODO An animation for opening?
-		#self.position.y += 3*18
+		print("open!")
+		sound_open.play()
 		self.in_animation = true
 		open = true
 

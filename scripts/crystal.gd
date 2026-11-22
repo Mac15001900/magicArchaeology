@@ -5,6 +5,8 @@ class_name Crystal
 @export var g : int = 1
 @export var b : int = 1
 
+@onready var sounds = [$ChangeSound1, $ChangeSound2, $ChangeSound3, $ChangeSound4]
+
 var correct : bool = false
 
 func _ready() -> void:
@@ -24,8 +26,12 @@ func cycle():
 	self.r = newR
 	self.g = newG
 	self.b = newB
-	
+	on_color_change()
+
+func on_color_change():
+	sounds.pick_random().play()
 	_update_color()
+	
 	
 func change(from, to):
 	assert(from != null and to != null)
@@ -34,7 +40,7 @@ func change(from, to):
 		r = clamp(to[0] + 1, 1, 2)
 		g = clamp(to[1] + 1, 1, 2)
 		b = clamp(to[2] + 1, 1, 2)
-		_update_color()	
+		on_color_change()
 	
 func old_change(from, to):
 	assert(from != null and to != null)
