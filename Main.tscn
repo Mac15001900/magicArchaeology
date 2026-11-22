@@ -1041,7 +1041,7 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=184814932 instance=ExtResource("2")]
-position = Vector2(-1179, -27)
+position = Vector2(-3771, 90)
 test_beam = ExtResource("15_kjvhd")
 
 [node name="spellcast" type="AudioStreamPlayer2D" parent="Player" unique_id=444405023]

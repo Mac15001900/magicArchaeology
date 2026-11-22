@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Spell Speller"
+config/name="Arcane Archaeology"
 config/description="A 2D platformer controller for Godot 4 with coyote time, jump buffering, variable jump height, double jump, dash, wall slide and wall jump. From codingquests.io"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
