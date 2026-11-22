@@ -1,7 +1,7 @@
 extends Area2D
 
-@onready
-var sprite = $Sprite2D
+@onready var sprite = $Sprite2D
+@onready var sound = $PickupSound
 var baseY = null
 var time = 0
 var picked_up  = false
@@ -26,5 +26,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	if(!picked_up):
 		print("Coin picked up")
+		sound.pitch_scale = 0.8 + 0.2 * randf()
+		sound.play()
 		self.picked_up = true
 	

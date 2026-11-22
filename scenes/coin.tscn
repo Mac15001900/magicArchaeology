@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c63bkh2q8ymgx" path="res://scripts/coin.gd" id="1_i64fm"]
 [ext_resource type="Texture2D" uid="uid://i348l8yi8ks2" path="res://assets/tilesets/tilemap_packed.png" id="1_rwqht"]
+[ext_resource type="AudioStream" uid="uid://c3kckmxgiu2y4" path="res://assets/sounds/coin.ogg" id="3_11l1o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i64fm"]
 radius = 7.0
@@ -17,5 +18,10 @@ shape = SubResource("CircleShape2D_i64fm")
 texture = ExtResource("1_rwqht")
 region_enabled = true
 region_rect = Rect2(198, 126, 18, 18)
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=315706931]
+stream = ExtResource("3_11l1o")
+pitch_scale = 0.85
+max_polyphony = 10
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
