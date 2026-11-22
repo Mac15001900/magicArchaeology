@@ -49,7 +49,7 @@ layer = -100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.875, 0.965, 0.961, 1)
+color = Color(0.9843137, 0.7882353, 0.48235294, 1)
 
 [node name="Hills" type="Parallax2D" parent="." unique_id=330756958]
 z_index = -20
@@ -58,19 +58,19 @@ repeat_size = Vector2(192, 0)
 repeat_times = 8
 
 [node name="Clouds" type="Sprite2D" parent="Hills" unique_id=390389195]
-position = Vector2(194, 55)
-scale = Vector2(2, 2)
+position = Vector2(180, -90)
+scale = Vector2(4, 4)
 texture = ExtResource("5")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 96, 72)
+region_rect = Rect2(96, 0, 48, 72)
 
 [node name="Below" type="ColorRect" parent="Hills" unique_id=1985082031]
-offset_left = 194.0
-offset_top = 199.0
-offset_right = 386.0
-offset_bottom = 1199.0
-color = Color(0.761, 0.89, 0.91, 1)
+offset_left = 180.0
+offset_top = 198.0
+offset_right = 372.0
+offset_bottom = 1198.0
+color = Color(0.79607844, 0.5058824, 0.36862746, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Level" type="Node2D" parent="." unique_id=1685834317]
@@ -870,7 +870,7 @@ position = Vector2(-5895, -54)
 position = Vector2(-5913, -54)
 
 [node name="Ending fog" type="ColorRect" parent="Level/Room13" unique_id=1104152430]
-offset_left = -6291.0
+offset_left = -6408.0
 offset_top = -306.0
 offset_right = -6138.0
 offset_bottom = 234.0
@@ -923,6 +923,8 @@ offset_left = 123.0
 offset_top = 313.0
 offset_right = 511.0
 offset_bottom = 343.33334
+theme_override_fonts/font = ExtResource("13_kjvhd")
+theme_override_font_sizes/font_size = 16
 script = ExtResource("13_c2ibq")
 
 [node name="GameController" type="Node" parent="." unique_id=1483445529]
